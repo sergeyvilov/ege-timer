@@ -186,9 +186,9 @@ window.onload = function () {
       timer_button.classList.add("no-hover");
     }
     //show only description, hide timer
-    document.getElementById("main-box").style.display = "none";
     document.getElementById("description").style.display = "block";
   } else {
+    document.getElementById("main-box").style.display = "block";
     document.getElementById("run-timer_button").style.display = "none";
   }
   reset_timer(); //initialize on the 1st task
