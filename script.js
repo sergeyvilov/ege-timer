@@ -21,7 +21,6 @@ var timer_mode; //'prep' or 'ans'
 var old_time_string; //previous displayed time
 
 var audio = new Audio(
-  //"https://dkihjuum4jcjr.cloudfront.net/ES_ITUNES/Buzzer%20Button%201/ES_Buzzer%20Button%201.mp3"
   "buzzer.mp3"
 );
 
@@ -31,7 +30,7 @@ function play_sound() {
 
 function task2_ticks_toggle(ticks_state) {
   //toggle ticks for task 4 answering
-  const boxes = document.getElementsByClassName("task2_sep");
+  const boxes = document.getElementsByClassName("task2-sep");
   for (const box of boxes) {
     box.style.visibility = ticks_state;
   }
@@ -176,4 +175,28 @@ function task(called_task) {
   play();
 }
 
-window.onload = reset_timer; //initialize on the 1st task
+window.onload = function () {
+  if ("ontouchstart" in window) {
+    ans_time_all_tasks[task_idx];
+    //mobile devices
+
+    //disable hover on buttons
+    const timer_buttons = document.getElementsByClassName("timer-button");
+    for (const timer_button of timer_buttons) {
+      timer_button.classList.add("no-hover");
+    }
+    //show only description, hide timer
+    document.getElementById("main-box").style.display = "none";
+    document.getElementById("description").style.display = "block";
+  } else {
+    document.getElementById("run-timer_button").style.display = "none";
+  }
+  reset_timer(); //initialize on the 1st task
+};
+
+function show_timer() {
+  //for mobile devices
+  document.getElementById("main-box").style.display = "block";
+  document.getElementById("run-timer_button").style.display = "none";
+  document.getElementById("description").style.display = "none";
+}
